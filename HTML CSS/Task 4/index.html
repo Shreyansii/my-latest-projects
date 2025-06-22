@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task-4</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    
+
+    <div class="form-section">
+      <h2>Contact Form</h2><br>
+      <form id="contact-form" novalidate>
+        <div class="input-group">
+          <input type="text" name="name" id="name" placeholder="Name*" required data-label="Name" data-required="true" />
+        </div>
+        <div class="input-group">
+          <input type="email" name="email" id="email" placeholder="Email*" required data-label="Email" data-required="true" />
+        </div>
+        <div class="input-group">
+          <input type="tel" name="phone" id="phone" placeholder="Phone (optional)" pattern="[0-9]{10}" data-label="Phone" />
+        </div>
+        <div class="input-group">
+          <input type="text" name="subject" id="subject" placeholder="Subject*" required data-label="Subject" data-required="true" />
+        </div>
+        <div class="input-group full-width">
+          <textarea name="message" id="message" placeholder="Message*" required data-label="Message" data-required="true"></textarea>
+        </div><br>
+        <div class="button-group">
+          <button type="reset">Clear</button>
+          <button type="submit">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
