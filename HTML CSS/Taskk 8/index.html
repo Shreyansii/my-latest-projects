@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Shreyansi's Portfolio</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="./style.css">
+	<script src="./script.js"></script>
+	
+
+	<link rel="icon" type="image/jpg" href="./imgs/designer-illustration.jpg">
+</head>
+
+
+
+<body>
+	<header>
+		 
+		<a href="#" class="logo-holder">
+		<div>
+			<canvas id="logoCanvas" width="700" height="90"></canvas>
+		</div> 
+			
+
+			<!-- <div class="logo-text">Shreyansi's Portfolio</div> -->
+		</a>
+		<nav>
+			<!-- <div class="nav-left">
+				<canvas id="logoCanvas" width="600" height="150"></canvas>
+			</div> -->
+			<ul id="menu">
+				<li>
+					<a href="#">Home</a>
+				</li>
+				<li>
+					<a href="#skills">Skills</a>
+				</li>
+				 <li class="dropdown">
+  <a href="#projects">Projects ▾</a>
+  <ul class="dropdown-menu">
+    <li><a href="#coding">Coding Projects</a></li>
+    <li><a href="#design">Design Projects</a></li>
+    <li><a href="#photo">Photo Manipulation</a></li>
+    <li><a href="#graphics">Computer Graphics</a></li>
+    <li><a href="#others">Others</a></li>
+  </ul>
+</li>
+
+
+               
+				<li>
+					<a href="#contact" class="button">Contact Me</a>
+				</li>
+			</ul>
+			<a href="#" class="mobile-toggle" onClick="toggleMobileMenu();">
+				<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+					<path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10"/>
+				</svg>
+			</a>
+		</nav>
+	</header>
+	<main>
+		<section class="hero container" >
+			 
+			<div class="hero-blue">
+				<div>
+					<h1><small>Hi, I'm</small>
+						Shreyansi Shrestha
+					</h1>
+					<p>
+						Designer and Developer based in Kathmandu,Nepal. Greatly fascinated by art, street culture & visual stuffs (photography & video-editing), I aim to bind my storytelling skills and programming knowledge into creating something immersive, experimental and meaningful in modern filmmaking (visual arts) and neurocognitive sector.</span>
+					</p>
+					<div class="call-to-action">
+						<a href="./CV-Shreyansi.pdf" class="button black">
+							View Resume
+						</a>
+						<a href="mailto:shreyansiishrestha@gmail.com" class="button white">
+							Contact Me
+						</a>
+					</div>
+					<div class="social-links">
+						<a href="https://www.linkedin.com/in/shreyansishrestha/
+                        ">
+							<img src="./imgs/github.png" alt="GitHub" width="48" />
+						</a>
+						<a href="https://github.com/Shreyansii/
+                        ">
+							<img src="./imgs/linkedin.png" alt="LinkedIn" width="48" />
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="hero-yellow">
+				<img src="./imgs/designer-illustration.jpg" alt="Shreyansi Shrestha" width="100%" />
+			</div>
+		</section>
+		<section class="logos container">
+			<div class="marquee">
+				<div class="track">
+					<img src="./imgs/html.png" alt="HTML" width="128" />
+					<img src="./imgs/css.png" alt="CSS" width="128" />
+					<img src="./imgs/javascript.png" alt="JS" width="128" />
+					
+					<img src="./imgs/react.png" width="128" alt="React" />
+                    <img src="./imgs/node.png" width="128" alt="node" />
+                    <img src="./imgs/illus.jpg" width="128" alt="adobe illustrator" />
+                    <img src="./imgs/ps.png" width="128" alt="ps" />
+                    <img src="./imgs/ae.png" width="128" alt="ae" />
+					<img src="./imgs/vscode.png" width="128" alt="VS Code" />
+                    <img src="./imgs/blender.png" width="128" alt="blender" />
+                    <img src="./imgs/unity.svg" width="128" alt="unity" />
+                    <img src="./imgs/wordpress.svg" width="128" alt="wordpress" />
+                    <img src="./imgs/figma.svg" width="128" alt="figma" />
+                    
+
+                    
+
+					
+					<img src="./imgs/html.png" alt="HTML" width="128" />
+					<img src="./imgs/css.png" alt="CSS" width="128" />
+					<img src="./imgs/javascript.png" alt="JS" width="128" />
+                    
+					
+					<img src="./imgs/react.png" width="128" alt="React" />
+                    <img src="./imgs/node.png" width="128" alt="node" />
+                    <img src="./imgs/illus.jpg" width="128" alt="adobe illustrator" />
+
+					<img src="./imgs/ps.png" width="128" alt="ps" />
+                    <img src="./imgs/ae.png" width="128" alt="ae" />
+					
+					<img src="./imgs/vscode.png" width="128" alt="VS Code" />
+                    <img src="./imgs/blender.png" width="128" alt="blender" />
+                    <img src="./imgs/unity.svg" width="128" alt="unity" />
+                    <img src="./imgs/wordpress.svg" width="128" alt="wordpress" />
+                    <img src="./imgs/figma.svg" width="128" alt="figma" />
+
+					
+				</div>
+			</div>
+		</section>
+		<section id="skills" class="skills container">
+			<h2>
+				<small>About Me</small>
+				Skills
+			</h2>
+			<div class="holder-blue">
+				<div class="left-column">
+					<h3>Frontend</h3>
+					<ul>
+                    
+						<li>Figma</li>
+                        <li>HTML</li>
+						<li>CSS</li>
+						<li>JavaScript</li>
+						<li>Vue</li>
+						<li>React</li>
+						<li>Redux</li>
+						
+					</ul>
+					<h3>Backend</h3>
+					<ul>
+						<li>Node.js</li>
+						<li>Express</li>
+                        <li>C++</li>
+					</ul>
+
+                    <h3>Database</h3>
+					<ul>
+						<li>SQL</li>
+						<li>MongoDB</li>
+                        
+					</ul>
+				</div>
+				<div class="right-column">
+					<h3>A bit about me</h3>
+					<p>
+						Hi I'm Shreyansi, and I am a creative who loves playing with colours, designs and stories, and to create things. I recently completed my Bachelors in Computer Engineering from Kathmandu Engineering College { TU, IOE }, i.e. <i>from 2021 to 2025</i>.
+					</p>
+					<p>
+						Currently I am honing my skills in full-stack development whilst smoothening my design concepts with every project I work on, I believe it also helps me approach problems from different angles. My interest primarily lies in cognitive science and immersive art experience( integration of art & culture with tech).</p> 
+                        <p> Apart from coding & designing, I am a visual artist (photography + video editing) with an experience of more than 4 years as well, I love photographing stuffs the independent journalism way, getting fascinated by stories in everything, metaphysical filmmaking, creative & curatorial writing, and that has helped me research practically and more lively about the innovative-tech platform I want to create for art & artists, by understanding the need and scenario from an artist perspective as well as a technical person.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- for chatbot webworker -->
+<section id="chatbot-section">
+  <div class="chat-container">
+    <div id="chatBox" class="chat-box">
+      <div class="bot">Hi! Ask me about my CV, skills, or projects.</div>
+	   
+    </div>
+    <input id="userInput" type="text" placeholder="Ask me something..." />
+  </div>
+</section>
+
+		<!-- bot ends -->
+		<!-- for latest project -->
+
+		<section class="work-experience container" id="coding">
+			<h2>
+				<small>My</small>
+				Latest Project
+			</h2>
+			<div class="holder-blue">
+			
+				<div class="right-column">
+					<div class="jobs">
+				<article>
+					<figure>
+						<div>
+							<img src="./imgs/ar.jpg" alt="p1" width="100%" />
+							<figcaption>
+								Augmented Reality Based Learning App
+							</figcaption>
+						</div>
+					</figure>
+					<h3 style="text-align: center;">NEURON-X : Augmented Reality Based Gamified Learning Approach for Neurodivergent & All</h3>
+				</div>
+					
+					<div class="call-to-action">
+						<a href="./Major-Final.pptx" class="button white " style="background-color: rgb(243, 201, 16);">
+							Documentation of the Project
+						</a>
+					</div>
+				
+		<br>
+		 <!-- latest ends -->
+		<section class="work-experience container" id="coding">
+			<h2>
+				<small>My</small>
+				Coding Projects
+			</h2>
+			<div class="jobs">
+				<article>
+					<figure>
+						<div>
+							<img src="./imgs/nps.png" alt="p1" width="100%" />
+							<figcaption>
+								Third Year's Minor Project
+							</figcaption>
+						</div>
+					</figure>
+					<h3>NEPASHRAY - A Creative Platform for Artistry</h3>
+					<div class="call-to-action">
+						<a href="https://github.com/SujanSapkota07/Nepashray.git" class="button white " style="background-color: rgb(243, 201, 16);">
+							GitHub Link To Project
+						</a>
+					</div>
+					<p>This is a real-time webapp (CMS) for creative enthusiasts. I solely created its entire frontend with HTML, CSS, Bootstrap & JavaScript.
+                        
+				</article>
+
+                <article>
+					<figure>
+						<div>
+							<img src="./imgs/nplquiz.png" alt="p1" width="100%" />
+							<figcaption>
+								A Playful Feel!
+							</figcaption>
+						</div>
+					</figure>
+					<h3>Nepal Premier League Fun Quiz Game</h3>
+					<div class="call-to-action">
+						<a href="https://github.com/Shreyansii/NPL-Quiz.git" class="button white " style="background-color: rgb(243, 201, 16);">
+							GitHub Link To Project
+						</a>
+					</div>
+					<p>This is a fun quiz app made using React.js with score tracking, highlighting the correct/incorrect answers and displaying scorecard.
+                        
+				</article>
+
+                <article>
+					<figure>
+						<div>
+							<img src="./imgs/rest.png" alt="p1" width="100%" />
+							<figcaption>
+								Server Setup
+							</figcaption>
+						</div>
+					</figure>
+					<h3> Building REST API with Node.js & Express.js</h3>
+					<div class="call-to-action">
+						<a href="https://github.com/Shreyansii/Server-and-REST-API.git" class="button white " style="background-color: rgb(243, 201, 16);">
+							GitHub Link To Project
+						</a>
+					</div>
+					<p>With this, I learnt about CRUD equivalence of HTTP methods, creating server, handling the responses,REST API and its rules,etc.
+                        
+				</article>
+
+
+				
+				
+			</div>
+
+            <!-- replicated div-->
+
+            
+
+
+            <!-- replic ends -->
+
+
+
+
+
+            <div class="jobs">
+				<article>
+					<figure>
+						<div>
+							<img src="./imgs/muse.png" alt="p1" width="100%" />
+							<figcaption>
+								My Writings
+							</figcaption>
+						</div>
+					</figure>
+					<h3>MUSINGS BY SHREYANSI - A Literature Magazine</h3>
+					<div class="call-to-action">
+						<a href="https://github.com/Shreyansii/musingsbyshreyansi-VolumeZero.git" class="button white " style="background-color: rgb(243, 201, 16);">
+							GitHub Link To Project
+						</a>
+					</div>
+					<p>This website ( made with HTML, CSS, JavaScript) serves as a digital space to share my creative writings—articles and poems—along with additional features like a planner and newsletter subscription.
+                        
+				</article>
+
+                <article>
+					<figure>
+						<div>
+							<img src="./imgs/todo.png" alt="p1" width="100%" />
+							<figcaption>
+								Minimalist To-Do List Planner
+							</figcaption>
+						</div>
+					</figure>
+					<h3>Unchaotic Day Planner App</h3><br>
+					<div class="call-to-action">
+						<a href="https://github.com/Shreyansii/todo-app.git" class="button white " style="background-color: rgb(243, 201, 16);">
+							GitHub Link To Project
+						</a>
+					</div>
+					<p>This is minimal to-do list app with day/time updates made using JavaScript, HTML and CSS. I used/practiced JS's Local Storage & DOM manipulations concepts through it.
+                        
+				</article>
+
+                <article>
+					<figure>
+						<div style="height: 8px;">
+							<img src="./imgs/cc.png" alt="p1" width="100%" />
+							<figcaption>
+								Fetch API & Async-Await based project
+							</figcaption><br>
+						</div>
+					</figure>
+					<h3> Fetch API Project - Currency Converter</h3><br>
+					<div class="call-to-action">
+						<a href="https://github.com/Shreyansii/currency-converter-app.git" class="button white " style="background-color: rgb(243, 201, 16);">
+							GitHub Link To Project
+						</a>
+					</div>
+					<p>This is a currency-converter app made using HTML, CSS and JavaScript. With this project, I learnt about using Fetch API, Async-Await and DOM Concepts. 
+                        
+				</article>
+
+
+				
+				
+			</div>
+
+		</section>
+		<section class="bento container" id="design">
+			<h2>
+				<small>
+					My
+				</small>
+				Design Projects
+			</h2>
+			<div class="bento-grid">
+				<a href="https://www.figma.com/proto/mSjDTw2fccJ3kaCzjD7gO6/Motionify?page-id=0%3A1&node-id=1-2&viewport=551%2C550%2C0.5&t=qWlpqwrWZm5T0BjM-1&scaling=scale-down&starting-point-node-id=2%3A29" class="bento-item">
+					<img src="./imgs/ar.png" alt="AR" width="100%" />
+				</a>
+				<a href="https://www.figma.com/file/gsTwks5zuLapcHjmw0JxkI/Untitled" class="bento-item">
+					<img src="./imgs/tee.png" alt="tee" width="100%" />
+				</a>
+				<a href="https://www.linkedin.com/in/shreyansishrestha/details/projects/1425268601/multiple-media-viewer/?profileId=ACoAADDuzlsBB9Sjg2np3qRm2l0_LG86DIln838&treasuryMediaId=1712969736277" class="bento-item">
+					<img src="./imgs/hiphop.png" alt="hiphop width="100%" />
+				</a>
+				<a href="https://www.linkedin.com/in/shreyansishrestha/details/projects/1425268601/multiple-media-viewer/?profileId=ACoAADDuzlsBB9Sjg2np3qRm2l0_LG86DIln838&treasuryMediaId=1712969736276" class="bento-item">
+					<img src="./imgs/mm.png" alt="mm" width="100%" />
+				</a>
+				<a href="https://www.linkedin.com/posts/shreyansishrestha_confirmation-bias-activity-7276942739286446082-SgB4?utm_source=share&utm_medium=member_desktop" class="bento-item">
+					<img src="./imgs/1.png" alt="pr" width="100%" />
+				</a>
+				<a href="https://www.figma.com/proto/Xk3dVSfKwzU1Nx2SN8T9tT/User-Login-Interface?node-id=2025-2&t=UbAG5i34Dv9La1as-1" class="bento-item">
+					<img src="./imgs/user.png" alt="userlogin" width="100%" />
+				</a>
+			</div>
+		</section>
+
+        <!-- animation section start -->
+
+        <section class="work-experience container" id="graphics">
+			<h2>
+				<small>Animation | 3D Modelling | Illustration</small>
+				 Computer Graphics Projects
+			</h2>
+			<div class="jobs">
+				<article>
+					<figure>
+						<div>
+							<img src="./imgs/td.png" alt="td" width="100%" />
+							<figcaption>
+								Visual Explorations
+							</figcaption>
+						</div>
+					</figure>
+					<h3>Fractal Animation - Made with TouchDesigner</h3>
+					<div class="call-to-action">
+						<a href="https://www.artstation.com/artwork/YGPyG6" class="button white " style="background-color: rgb(243, 201, 16);">
+							ArtStation Link To Project
+						</a>
+					</div>
+					
+				</article>
+
+                <article>
+					<figure>
+						<div>
+							<img src="./imgs/bd.png" alt="bd" width="100%" />
+							<figcaption>
+								3D Modelling
+							</figcaption>
+						</div>
+					</figure>
+					<h3>Isometric 3D Model of Cosy Room - Made with Blender</h3>
+					<div class="call-to-action">
+						<a href="https://www.artstation.com/artwork/8BmdBq" class="button white " style="background-color: rgb(243, 201, 16);">
+							ArtStation Link To Project
+						</a>
+					</div>
+					
+				</article>
+
+                <article>
+					<figure>
+						<div>
+							<img src="./imgs/city.png" alt="city" width="100%" />
+							<figcaption>
+								2-Point Perspective Illustration
+							</figcaption>
+						</div>
+					</figure>
+					<h3>Isometric Night City - Made with Adobe Illustrator</h3>
+					<div class="call-to-action">
+						<a href="https://www.behance.net/gallery/112973809/Archi-Illustration" class="button white " style="background-color: rgb(243, 201, 16);">
+							Behance Link To Project
+						</a>
+					</div>
+					
+				</article>
+
+
+				
+				
+			</div>
+
+
+            <!-- replic div -->
+
+            <div class="jobs">
+				<article>
+					<figure>
+						<div>
+							<img src="./imgs/thanos.png" alt="p1" width="100%" />
+							<figcaption>
+								Marvel Universe with JavaScript's Library
+							</figcaption>
+						</div>
+					</figure>
+					<h3>Thanos Warp Portal Animation using Three.js</h3>
+					<div class="call-to-action">
+						<a href="https://github.com/Shreyansii/3D-Graphics.git" class="button white " style="background-color: rgb(243, 201, 16);">
+							GitHub Link To Project
+						</a>
+					</div>
+				
+				</article>
+
+                <article>
+					<figure>
+						<div>
+							<img src="./imgs/p5.png" alt="p1" width="100%" />
+							<figcaption>
+								Interactive Rotating Animation using Javascript's Library
+							</figcaption>
+						</div>
+					</figure>
+					<h3>Interactive Rotating Blocks Animation using p5.js</h3>
+					<div class="call-to-action">
+						<a href="https://github.com/Shreyansii/interactive-display-with-rotatingblocks.git" class="button white " style="background-color: rgb(243, 201, 16);">
+							GitHub Link To Project
+						</a>
+					</div>
+					
+				</article>
+
+               
+
+
+				
+				
+			</div>
+
+            <!-- replic ends -->
+
+              <!-- replic div -->
+
+              <div class="jobs">
+				<article>
+					<figure>
+						<div>
+							<img src="./imgs/coffee.jpg" alt="p1" width="100%" />
+							<figcaption>
+								2D Artwork
+							</figcaption>
+						</div>
+					</figure>
+					<h3>Coffee Cup Illustration - Made with Adobe Illustrator</h3>
+					<div class="call-to-action">
+						<a href="https://www.linkedin.com/in/shreyansishrestha/details/projects/331555490/multiple-media-viewer/?profileId=ACoAADDuzlsBB9Sjg2np3qRm2l0_LG86DIln838&treasuryMediaId=1716170990635" class="button white " style="background-color: rgb(243, 201, 16);">
+							Click to have Full View
+						</a>
+					</div>
+				
+				</article>
+
+                <article>
+					<figure>
+						<div>
+							<img src="./imgs/yeti.jpg" alt="p1" width="100%" />
+							<figcaption>
+								Digital Art of Everest from Motion Picture 'Abominable'
+							</figcaption>
+						</div>
+					</figure>
+					<h3>'Abonimable' - Made with Autodesk Sketchbook</h3>
+					<div class="call-to-action">
+						<a href="https://www.linkedin.com/in/shreyansishrestha/details/projects/1635552297945/single-media-viewer/?profileId=ACoAADDuzlsBB9Sjg2np3qRm2l0_LG86DIln838" class="button white " style="background-color: rgb(243, 201, 16);">
+							Click to have Full View
+						</a>
+					</div>
+					
+				</article>
+
+               
+
+
+				
+				
+			</div>
+
+            <!-- replic ends -->
+
+</section>
+
+
+        <!-- animation section end -->
+
+
+	
+
+        <!-- photo manip section start -->
+
+        <section class="work-experience container" id="photo">
+			<h2>
+				<small>My</small>
+				Photo Manipulation Projects
+			</h2>
+			<div class="jobs">
+				<article>
+					<figure>
+						<div>
+							<img src="./imgs/1.jpg" alt="p1" width="100%" />
+							<figcaption>
+								Photo One
+							</figcaption>
+						</div>
+					</figure>
+					<h3>The Analysis</h3>
+					<div class="call-to-action">
+						<a href="https://www.linkedin.com/in/shreyansishrestha/details/projects/332132806/multiple-media-viewer/?profileId=ACoAADDuzlsBB9Sjg2np3qRm2l0_LG86DIln838&treasuryMediaId=1716171567980" class="button white " style="background-color: rgb(243, 201, 16);">
+							Click to have Full View
+						</a>
+					</div>
+					
+				</article>
+<script src="chatbot-worker.js"></script>
+                <article>
+					<figure>
+						<div>
+							<img src="./imgs/2.jpg" alt="p1" width="100%" />
+							<figcaption>
+								Photo Two
+							</figcaption>
+						</div>
+					</figure>
+					<h3>The Undecisive</h3>
+					<div class="call-to-action">
+						<a href="https://www.linkedin.com/in/shreyansishrestha/details/projects/332132806/multiple-media-viewer/?profileId=ACoAADDuzlsBB9Sjg2np3qRm2l0_LG86DIln838&treasuryMediaId=1716171567981" class="button white " style="background-color: rgb(243, 201, 16);">
+							Click to have Full View
+						</a>
+					</div>
+					
+				</article>
+
+                <article>
+					<figure>
+						<div>
+							<img src="./imgs/3.jpg" alt="p1" width="100%" />
+							<figcaption>
+								Photo Three
+							</figcaption>
+						</div>
+					</figure>
+					<h3> The Blood Retrieval</h3>
+					<div class="call-to-action">
+						<a href="https://www.linkedin.com/in/shreyansishrestha/details/projects/332132806/multiple-media-viewer/?profileId=ACoAADDuzlsBB9Sjg2np3qRm2l0_LG86DIln838&treasuryMediaId=1716171567982" class="button white " style="background-color: rgb(243, 201, 16);">
+							Click to have Full View
+						</a>
+					</div>
+				
+				</article>
+
+                
+
+
+				
+				
+			</div>
+
+
+
+
+
+            <!-- mm -->
+
+
+            <section class="work-experience container" id="projects">
+                
+                <div class="jobs">
+                    <article>
+                        <figure>
+                            <div>
+                                <img src="./imgs/4.jpg" alt="p1" width="100%" />
+                                <figcaption>
+                                    Photo Four
+                                </figcaption>
+                            </div>
+                        </figure>
+                        <h3>Girl On The Train</h3>
+                        <div class="call-to-action">
+                            <a href="https://www.linkedin.com/in/shreyansishrestha/details/projects/332132806/multiple-media-viewer/?profileId=ACoAADDuzlsBB9Sjg2np3qRm2l0_LG86DIln838&treasuryMediaId=1716171567982" class="button white " style="background-color: rgb(243, 201, 16);">
+                                Click to have Full View
+                            </a>
+                        </div>
+                        
+                    </article>
+    
+                    <article>
+                        <figure>
+                            <div>
+                                <img src="./imgs/5.jpg" alt="p1" width="100%" />
+                                <figcaption>
+                                    Photo Five
+                                </figcaption>
+                            </div>
+                        </figure>
+                        <h3>Like Let's Abhinay (Act) Garau</h3>
+                        <div class="call-to-action">
+                            <a href="https://www.linkedin.com/in/shreyansishrestha/details/projects/332132806/multiple-media-viewer/?profileId=ACoAADDuzlsBB9Sjg2np3qRm2l0_LG86DIln838&treasuryMediaId=1716171567984" class="button white " style="background-color: rgb(243, 201, 16);">
+                                Click to have Full View
+                            </a>
+                        </div>
+                        
+                    </article>
+    
+           
+    
+                    
+    
+    
+                    
+                    
+                </div>
+
+
+        <!-- photo mNIP SECTION END -->
+
+
+        <!-- extra section starts -->
+
+
+        <!-- animation section start --><br>
+         <hr><br>
+
+        <section class="work-experience container" id="others">
+			<h2>
+				<small>To check out more of what I do,</small>
+				 My Creative Work Handles
+			</h2>
+			<div class="jobs" style="align-items: center; justify-content: center; text-align: center;">
+				<article>
+					
+					<h3>Visual Arts</h3>
+					<div class="call-to-action">
+						<a href="https://www.instagram.com/_shreyansii/" class="button white " style="background-color: rgb(238, 73, 216);">
+							Visual Storytelling</a><br>
+					</div>
+
+                    <div class="call-to-action">
+						<a href="https://www.instagram.com/musingsbyshreyansi/" class="button white " style="background-color: rgb(238, 73, 216);">
+							Metaphysical Filmmaking
+						</a>
+					</div>
+
+                   
+
+                   
+                            <p><small><i>{ where I cover stories/documented photo-videography about streets, art & culture, cosmic & fractal nature, shadowplay and many more }
+                            </i> </small></p>
+						
+					</div>
+					
+				</article>
+
+            </div>
+            </section>
+
+
+            <!-- new section -->
+
+            <section class="work-experience container" id="projects">
+               
+                <div class="jobs" style="align-items: center; justify-content: center; text-align: center;">
+                    <article>
+                        
+                        <h3>Creative & Curatorial Writings</h3>
+                        <div class="call-to-action">
+                            <a href="https://shreyansii.wordpress.com/" class="button white " style="background-color: rgb(238, 73, 216);">
+                                Blogs On WordPress</a><br>
+                        </div>
+    
+                       
+    
+                       
+                                <p><small><i>{ where I share my articles, poetries or any literature-related stuffs. }
+                                </i> </small></p>
+                            
+                        </div>
+                        
+                    </article>
+    
+                </div>
+                </section>
+
+                <section class="work-experience container" id="projects">
+               
+                    <div class="jobs" style="align-items: center; justify-content: center; text-align: center;">
+                        <article>
+                            
+                            <h3>Computer Science Related Writings</h3>
+                            <div class="call-to-action">
+                                <a href="https://dev.to/shreyansii" class="button white " style="background-color: rgb(238, 73, 216);">
+                                    Tech Blogs On DEV Community</a><br>
+                            </div>
+        
+                           
+        
+                           
+                                    <p><small><i>{ where I document my learnings through the course of building projects. }
+                                    </i> </small></p>
+                                
+                            </div>
+                            
+                        </article>
+        
+                    </div>
+                    </section>
+
+                    <section class="work-experience container" id="projects">
+               
+                        <div class="jobs" style="align-items: center; justify-content: center; text-align: center;">
+                            <article>
+                                
+                                <h3>Anything Design</h3>
+                                <div class="call-to-action">
+                                    <a href="https://www.behance.net/shreyy" class="button white " style="background-color: rgb(238, 73, 216);">
+                                        Behance Profile</a><br>
+                                </div>
+            
+                               
+            
+                               
+                                        <p><small><i>{ where I share my works related to design (product/UI-UX/graphic), digital illustration and photo manipulation. }
+                                        </i> </small></p>
+                                    
+                                </div>
+                                
+                            </article>
+            
+                        </div>
+                        </section>
+
+                        <section class="work-experience container" id="projects">
+               
+                            <div class="jobs" style="align-items: center; justify-content: center; text-align: center;">
+                                <article>
+                                    
+                                    <h3>Anything Animation & 3D-Modelling Related</h3>
+                                    <div class="call-to-action">
+                                        <a href="https://www.artstation.com/shreyansii" class="button white " style="background-color: rgb(238, 73, 216);">
+                                            ArtStation Profile</a><br>
+                                    </div>
+                
+                                   
+                
+                                   
+                                            <p><small><i>{ where I share my motion-graphics stuffs. }
+                                            </i> </small></p>
+                                        
+                                    </div>
+                                    
+                                </article>
+                
+                            </div>
+                            </section>
+
+        <!-- extra section ends -->
+	</main>
+	<!-- contact -->
+
+	<section id="contact" class="contact-section">
+  <h2>Contact Me</h2>
+  <form class="contact-form" action="mailto:shreyansiishrestha@gmail.com" method="POST" enctype="text/plain">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required placeholder="Your name">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required placeholder="your@email.com">
+    </div>
+
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea id="message" placeholder="Write your message here..."></textarea>
+<small id="wordCountOutput" style="display: block; margin-top: 5px; color: #888;">
+  Words: 0 | Characters: 0
+</small>
+
+    </div>
+
+    <div class="location-wrapper">
+      <button type="button" class="location-button" onclick="getLocation()">📍 Use My Location</button>
+      <input type="text" id="location" name="location" placeholder="Location will appear here..." readonly>
+    </div>
+
+    <button type="submit" class="button">Send Message</button>
+  </form>
+</section>
+
+	<!-- end contact -->
+	 <script src="./wordCounter-worker.js"></script>
+	
+	<script src="./chatbot-worker.js"></script>
+</body>
+</html>
+
+

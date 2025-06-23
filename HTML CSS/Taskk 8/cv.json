@@ -1,0 +1,9 @@
+{
+  "name": "Shreyansi",
+  "college": "Kathmandu Engineering College (TU,IOE",
+  "skills": ["HTML", "CSS", "JavaScript", "Figma", "Blender", "Nodejs", "Vue", "Nodejs", "MongoDB", "SQL"],
+  "projects": [
+    "Neuron-X Augmented Reality App",
+    "Nepashray : Storytelling Webapp",
+  ]
+}
