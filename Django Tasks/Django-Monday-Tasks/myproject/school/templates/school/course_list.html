@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Courses{% endblock %}
+{% block content %}
+<h2 class="text-2xl font-bold mb-4">All Courses</h2>
+<a href="{% url 'course_create' %}" class="bg-blue-600 text-white px-4 py-2 rounded">Add Course</a>
+<table class="min-w-full mt-4 border">
+    <thead>
+        <tr class="bg-gray-100">
+            <th class="p-2">Title</th>
+            <th>Code</th>
+            <th>Credits</th>
+            <th>Department</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for course in courses %}
+        <tr class="border-t">
+            <td class="p-2">{{ course.title }}</td>
+            <td>{{ course.code }}</td>
+            <td>{{ course.credits }}</td>
+            <td>{{ course.department }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4">No courses found.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,67 @@
+# from django.shortcuts import render, redirect
+# from .models import Student
+# from .forms import StudentForm
+
+# def student_list(request):
+#     students = Student.objects.all()
+#     return render(request, 'school/student_list.html', {'students': students})
+
+# def student_create(request):
+#     form = StudentForm(request.POST or None)
+#     if form.is_valid():
+#         form.save()
+#         return redirect('student_list')
+#     return render(request, 'school/student_form.html', {'form': form})
+
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Department, Course, Student, Enrollment
+from .forms import DepartmentForm, CourseForm, StudentForm, EnrollmentForm
+
+#  Department 
+def department_list(request):
+    departments = Department.objects.all()
+    return render(request, 'school/department_list.html', {'departments': departments})
+
+def department_create(request):
+    form = DepartmentForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('department_list')
+    return render(request, 'school/department_form.html', {'form': form})
+
+# Course 
+def course_list(request):
+    courses = Course.objects.all()
+    return render(request, 'school/course_list.html', {'courses': courses})
+
+def course_create(request):
+    form = CourseForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('course_list')
+    return render(request, 'school/course_form.html', {'form': form})
+
+# Student 
+def student_list(request):
+    students = Student.objects.all()
+    return render(request, 'school/student_list.html', {'students': students})
+
+def student_create(request):
+    form = StudentForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('student_list')
+    return render(request, 'school/student_form.html', {'form': form})
+
+# Enrollment 
+def enrollment_list(request):
+    enrollments = Enrollment.objects.select_related('student', 'course')
+    return render(request, 'school/enrollment_list.html', {'enrollments': enrollments})
+
+def enrollment_create(request):
+    form = EnrollmentForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('enrollment_list')
+    return render(request, 'school/enrollment_form.html', {'form': form})
+
