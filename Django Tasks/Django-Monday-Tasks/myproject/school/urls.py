@@ -1,9 +1,9 @@
+
+
 from django.urls import path
 from . import views
 
 urlpatterns = [
-
-        # Landing/Home Dashboard
     path('', views.school_home, name='school_home'),
 
     # Department
@@ -17,8 +17,10 @@ urlpatterns = [
     # Student
     path('students/', views.student_list, name='student_list'),
     path('students/create/', views.student_create, name='student_create'),
+    path('students/<int:student_id>/update/', views.student_update, name='student_update'),
 
     # Enrollment
     path('enrollments/', views.enrollment_list, name='enrollment_list'),
     path('enrollments/create/', views.enrollment_create, name='enrollment_create'),
+    path('enrollments/<int:enrollment_id>/delete/', views.enrollment_delete, name='enrollment_delete'),
 ]
