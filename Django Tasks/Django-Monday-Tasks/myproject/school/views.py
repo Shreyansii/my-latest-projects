@@ -17,6 +17,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Department, Course, Student, Enrollment
 from .forms import DepartmentForm, CourseForm, StudentForm, EnrollmentForm
 
+
+
+def school_home(request):
+    return render(request, 'school/school_home.html')
+
+
 #  Department 
 def department_list(request):
     departments = Department.objects.all()

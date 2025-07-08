@@ -44,4 +44,4 @@ def product_delete(request, pk):
     return render(request, 'catalog/product_confirm_delete.html', {'product': product})
 
 
-# Create your views here.
+

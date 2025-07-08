@@ -32,5 +32,9 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('catalog/', include('catalog.urls')),
     path('school/', include('school.urls')),
+    path('library/', include('library.urls')),
+    path('school/', include('school.urls')),
+    path('', include('event.urls'))
+
 
 ]

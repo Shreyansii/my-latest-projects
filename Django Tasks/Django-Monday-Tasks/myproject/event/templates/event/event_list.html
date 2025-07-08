@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Events{% endblock %}
+
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">Events</h1>
+<a href="{% url 'event-add' %}" class="bg-blue-500 text-white px-4 py-2 rounded">Add Event</a>
+<br>
+ <div style="font-size: 120px; line-height: 1; text-align: center;">
+  💐🎉
+</div><br>
+<ul class="mt-4 space-y-4">
+  {% for event in events %}
+    <li class="border p-4 rounded bg-white shadow">
+      <h2 class="text-xl font-semibold">{{ event.title }}</h2>
+      <p>{{ event.description }}</p>
+      <p><strong>Venue:</strong> {{ event.venue.name }} | <strong>Organizer:</strong> {{ event.organizer.name }}</p>
+      <div class="mt-2">
+        <a href="{% url 'event-edit' event.pk %}" class="text-blue-600 hover:underline">Edit</a> |
+        <a href="{% url 'event-delete' event.pk %}" class="text-red-600 hover:underline">Delete</a>
+      </div>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}

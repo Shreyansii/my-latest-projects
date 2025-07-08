@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto p-4">
+  <h2 class="text-2xl font-bold mb-4">Books</h2>
+
+  <a href="{% url 'add_book' %}" class="mb-4 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Add Book</a>
+
+  <table class="min-w-full border border-gray-300">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="py-2 px-4 border">Title</th>
+        <th class="py-2 px-4 border">Author</th>
+        <th class="py-2 px-4 border">Publisher</th>
+        <th class="py-2 px-4 border">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in books %}
+      <tr class="border-t">
+        <td class="py-2 px-4">{{ book.title }}</td>
+        <td class="py-2 px-4">{{ book.author.name }}</td>
+        <td class="py-2 px-4">{{ book.publisher.name }}</td>
+        <td class="py-2 px-4 space-x-2">
+          <a href="{% url 'edit_book' book.id %}" class="text-blue-600 hover:underline">Edit</a>
+          <a href="{% url 'delete_book' book.id %}" class="text-red-600 hover:underline">Delete</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="4" class="text-center py-4">No books found.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
