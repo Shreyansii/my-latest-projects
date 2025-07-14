@@ -1,5 +1,5 @@
 """
-URL configuration for myproject project.
+URL configuration for with_DRF_CBV project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
@@ -14,30 +14,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-# from django.contrib import admin
-# from django.urls import path,include
 
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-#     path('blog/', include('blog.urls')),
-#     path('catalog/', include('catalog.urls')),
-# ]
 
 from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', include('home.urls')),       
-    # path('blog/', include('blog.urls')),
-    # path('catalog/', include('catalog.urls')),
-    # path('school/', include('school.urls')),
-    # path('library/', include('library.urls')),
-    # path('school/', include('school.urls')),
-    # path('', include('event.urls'))
+    path('api/blog/', include('blog.api_urls')),
+    path('api/catalog/', include('catalog.api_urls')),
+    path('api/school/', include('school.api_urls')),
+    path('api/lirary/', include('library.api_urls')),
+    path('api/event/', include('event.api_urls')),
 
 
-    path("api_cbv/", include("blog.urls")),
-
-
+    path('api-auth/', include('rest_framework.urls')),  # browsable API login
 ]
