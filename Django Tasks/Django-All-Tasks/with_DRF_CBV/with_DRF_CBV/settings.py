@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'catalog',
     'school',
     'library',
-    'event'
+    'event',
+    'rest_framework.authtoken',
+    'shop'
 ]
 
 REST_FRAMEWORK = {
@@ -98,6 +100,10 @@ DATABASES = {
         'PORT': '5432',            
     }
 }
+
+
+AUTH_USER_MODEL = 'shop.User' #did for custom user
+
 
 
 
