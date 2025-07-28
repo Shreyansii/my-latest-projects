@@ -118,12 +118,12 @@ export default function AuthPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-green-100 px-4"> {/* ✅ Mint green background */}
-      <Card className="w-full max-w-md shadow-2xl">
+    <div className="flex min-h-screen items-center justify-center bg-gray-100 px-4">
+      <Card className="w-full max-w-md shadow-2xl border">
         <form onSubmit={handleSubmit}>
           <CardHeader>
-            <CardTitle className="text-2xl text-center"> 
-              {isLogin ? 'Login' : 'Sign Up'}
+            <CardTitle className="text-2xl text-center font-bold">
+              {isLogin ? 'Login to Your Account' : 'Create a New Account'}
             </CardTitle>
           </CardHeader>
 
@@ -148,44 +148,70 @@ export default function AuthPage() {
               </Alert>
             )}
 
-            <Input
-              type="text"
-              name="username"
-              placeholder="Username"
-              value={form.username}
-              onChange={handleChange}
-              required
-            />
-
-            {!isLogin && (
+            {/* Username */}
+            <div className="space-y-1">
+              <label htmlFor="username" className="block text-sm font-medium">
+                Username
+              </label>
               <Input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={form.email}
+                id="username"
+                name="username"
+                placeholder="Enter username"
+                value={form.username}
                 onChange={handleChange}
                 required
               />
+            </div>
+
+            {/* Email (only for signup) */}
+            {!isLogin && (
+              <div className="space-y-1">
+                <label htmlFor="email" className="block text-sm font-medium">
+                  Email
+                </label>
+                <Input
+                  id="email"
+                  name="email"
+                  placeholder="Enter email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
             )}
 
-            <Input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={form.password}
-              onChange={handleChange}
-              required
-            />
-
-            {!isLogin && (
+            {/* Password */}
+            <div className="space-y-1">
+              <label htmlFor="password" className="block text-sm font-medium">
+                Password
+              </label>
               <Input
+                id="password"
                 type="password"
-                name="confirmPassword"
-                placeholder="Confirm Password"
-                value={form.confirmPassword}
+                name="password"
+                placeholder="Enter password"
+                value={form.password}
                 onChange={handleChange}
                 required
               />
+            </div>
+
+            {/* Confirm Password (only for signup) */}
+            {!isLogin && (
+              <div className="space-y-1">
+                <label htmlFor="confirmPassword" className="block text-sm font-medium">
+                  Confirm Password
+                </label>
+                <Input
+                  id="confirmPassword"
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="Re-enter password"
+                  value={form.confirmPassword}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
             )}
           </CardContent>
 
