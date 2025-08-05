@@ -9,10 +9,21 @@ class User(AbstractUser):
     is_verified = models.BooleanField(default=False)
     reset_token = models.CharField(max_length=255, blank=True)
     reset_token_exp = models.DateTimeField(null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)  # Remove default=timezone.now
+    created_at = models.DateTimeField(auto_now_add=True)
+    deactivated_at = models.DateTimeField(null=True, blank=True)
     
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
+
+    def save(self, *args, **kwargs):
+        self.username = self.username.lower()  # Force lowercase
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.username  # Display username field(here email is primary login field so email is displayed) in admin/string representation
+
+
+
 
 class Settings(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='settings')

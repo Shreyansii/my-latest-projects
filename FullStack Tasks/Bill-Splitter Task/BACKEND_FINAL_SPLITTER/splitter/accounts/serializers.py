@@ -3,7 +3,32 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
 from .models import User, Settings
 from django.core.mail import send_mail
+from rest_framework.exceptions import ValidationError
 
+
+
+
+class UserDisplaySerializer(serializers.ModelSerializer):
+    """Serializer for displaying user info - emphasizes username"""
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'first_name', 'last_name', 'avatar_url', 'is_verified')
+        # Note: email excluded for privacy in public displays
+
+class UserSerializer(serializers.ModelSerializer):
+    """Full user serializer for profile/settings"""
+    display_name = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email', 'first_name', 'last_name', 
+                 'phone', 'avatar_url', 'is_verified', 'created_at', 'display_name')
+        read_only_fields = ('id', 'is_verified', 'created_at')
+    
+    def get_display_name(self, obj):
+        """Prioritize first_name, fallback to username"""
+        return obj.first_name or obj.username
+    
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, validators=[validate_password])
@@ -25,34 +50,6 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         return user
     
 
-
-      # Generate verification token
-        verification_token = get_random_string(32)
-        user.reset_token = verification_token  
-        user.reset_token_exp = timezone.now() + timedelta(hours=24)
-        user.save()
-        
-        # Send verification email
-        self.send_verification_email(user, verification_token)
-        return user
-       
-     
-    
-    def send_verification_email(self, user, token):
-        verification_link = f"http://localhost:3000/verify-email/{token}"
-        send_mail(
-        'Verify your email - Splitter App',
-        f'Hi {user.first_name or user.username},\n\n'
-        f'Thank you for signing up for Splitter!\n'  
-        f'Please click the link below to verify your email address:\n\n'
-        f'{verification_link}\n\n'
-        f'This link will expire in 24 hours.\n\n'
-        f'If you didn\'t create this account, please ignore this email.\n\n'
-        f'Best regards,\nThe Splitter Team',
-        'noreply@splitter.com',  # app's email
-        [user.email],
-    )
-
 class UserLoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField()
@@ -70,17 +67,11 @@ class UserLoginSerializer(serializers.Serializer):
             attrs['user'] = user
         return attrs
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('id', 'username', 'email', 'first_name', 'last_name', 'phone', 'avatar_url', 'is_verified', 'created_at')
-        read_only_fields = ('id', 'is_verified', 'created_at')
-
 class SettingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Settings
         fields = '__all__'
-        read_only_fields = ('user',)
+        read_only_fields = ('user')
 
 class ChangePasswordSerializer(serializers.Serializer):
     current_password = serializers.CharField()
@@ -90,4 +81,48 @@ class ChangePasswordSerializer(serializers.Serializer):
     def validate(self, attrs):
         if attrs['new_password'] != attrs['confirm_password']:
             raise serializers.ValidationError("New passwords don't match")
+        return attrs
+
+
+
+class ForgotPasswordSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+
+class ResetPasswordSerializer(serializers.Serializer):
+    """
+    Serializer for resetting password with token.
+    """
+    token = serializers.CharField(required=True, max_length=32)
+    new_password = serializers.CharField(
+        required=True,
+        write_only=True,
+        min_length=8,
+        style={'input_type': 'password'}
+    )
+    confirm_password = serializers.CharField(
+        required=True,
+        write_only=True,
+        min_length=8,
+        style={'input_type': 'password'}
+    )
+
+    def validate_new_password(self, value):
+        """
+        Validate new password using Django's password validators.
+        """
+        try:
+            validate_password(value)
+        except ValidationError as e:
+            raise serializers.ValidationError(e.messages)
+        return value
+
+    def validate(self, attrs):
+        """
+        Validate that passwords match.
+        """
+        if attrs['new_password'] != attrs['confirm_password']:
+            raise serializers.ValidationError({
+                'confirm_password': 'Password confirmation does not match.'
+            })
         return attrs

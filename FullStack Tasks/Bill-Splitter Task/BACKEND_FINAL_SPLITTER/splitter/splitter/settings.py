@@ -95,6 +95,20 @@ REST_FRAMEWORK = {
         'rest_framework.filters.SearchFilter',
         'rest_framework.filters.OrderingFilter',
     ],
+
+  
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.UserRateThrottle',  # Applies to logged-in users
+        'rest_framework.throttling.AnonRateThrottle',  # Applies to anonymous users
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'user': '1000/day',             # Max 1000 requests per day for each authenticated user
+        'anon': '100/day',              # Max 100 requests per day for each anonymous IP/user
+        'forgot_password': '5/hour',    # Custom throttle for forgot password endpoint (5 requests per hour)
+        'resend_verification': '3/hour' # Custom throttle for resend verification (3 requests per hour)
+    }
+
+
 }
 
 # JWT Configuration
