@@ -13,6 +13,8 @@ import os
 from pathlib import Path
 from decouple import config
 from datetime import timedelta
+import psycopg2
+
 
 
 
@@ -161,6 +163,10 @@ DATABASES = {
         'PASSWORD': 'Art#123',
         'HOST': 'localhost',
         'PORT': '5432',
+        'OPTIONS': {
+            'isolation_level': psycopg2.extensions.ISOLATION_LEVEL_READ_COMMITTED,
+        },
+        'ATOMIC_REQUESTS': False # Don't make all requests atomic (performance)
     }
 }
 

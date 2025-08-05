@@ -33,3 +33,10 @@ class Settings(models.Model):
     notify_on_settle = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)  # Remove default=timezone.now
     updated_at = models.DateTimeField(auto_now=True)
+
+def __str__(self):
+    return str(self.user)
+
+class Meta:
+        verbose_name = "Settings"
+        verbose_name_plural = "Settings"

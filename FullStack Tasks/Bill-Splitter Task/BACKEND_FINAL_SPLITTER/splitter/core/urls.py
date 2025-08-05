@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-app_name = 'core'
 urlpatterns = [
-    # URLs will be added here later
+    path('categories/', views.CategoryListView.as_view(), name='categories'),
+    path('activity-logs/', views.ActivityLogListView.as_view(), name='activity_logs'),
 ]

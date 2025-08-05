@@ -16,6 +16,8 @@ class SettingsAdmin(admin.ModelAdmin):
     list_display = ('user', 'dark_mode', 'notify_on_add', 'created_at')
     list_filter = ('dark_mode', 'notify_on_add', 'notify_on_edit', 'notify_on_settle')
 
+    
+
 # Register all models
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(Settings, SettingsAdmin)

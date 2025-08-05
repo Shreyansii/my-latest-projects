@@ -18,6 +18,7 @@ from .permissions import (
     IsAdminOrVerifiedUser
 )
 from rest_framework.permissions import IsAuthenticated
+from django.db import transaction
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -49,10 +50,12 @@ class UserViewSet(viewsets.ModelViewSet):
         elif self.action == 'forgot_password':
             return ForgotPasswordSerializer
         return UserSerializer
-
+    
+# create-register
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
+         with transaction.atomic():
             user = serializer.save()
             verification_token = get_random_string(32)
             user.reset_token = verification_token

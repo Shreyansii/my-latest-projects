@@ -4,6 +4,8 @@ from django.contrib.auth.password_validation import validate_password
 from .models import User, Settings
 from django.core.mail import send_mail
 from rest_framework.exceptions import ValidationError
+from django.db import transaction
+
 
 
 
@@ -43,6 +45,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Passwords don't match")
         return attrs
     
+    @transaction.atomic
     def create(self, validated_data):
         validated_data.pop('password_confirm')
         user = User.objects.create_user(**validated_data)
