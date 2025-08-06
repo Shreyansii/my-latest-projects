@@ -1,36 +1,13 @@
-import json
-from django.utils.deprecation import MiddlewareMixin
-from .utils import log_activity
+# revisit after expense app completion
 
-class ActivityLogMiddleware(MiddlewareMixin):
-    """
-    Middleware to automatically log user activities.
-    """
-    def process_response(self, request, response):
-        if (hasattr(request, 'user') and 
-            request.user.is_authenticated and 
-            request.method in ['POST', 'PUT', 'PATCH', 'DELETE'] and
-            response.status_code < 400):
-            
-            path = request.path
-            method = request.method
-            
-            # Log based on URL patterns
-            if '/api/expenses/' in path and method == 'POST':
-                log_activity(
-                    user=request.user,
-                    action_type='expense_created',
-                    ref_table='expenses',
-                    ref_id=0,  # need to extract from response
-                    description=f'User created a new expense'
-                )
-            elif '/api/groups/' in path and method == 'POST':
-                log_activity(
-                    user=request.user,
-                    action_type='group_created',
-                    ref_table='groups',
-                    ref_id=0,
-                    description=f'User created a new group'
-                )
-        
-        return response
+# class ExpenseLoggingMiddleware:
+#     def __init__(self, get_response):
+#         self.get_response = get_response
+
+#     def __call__(self, request):
+#         response = self.get_response(request)
+
+#         if request.user.is_authenticated and '/api/expenses/' in request.path:
+#             print(f"User {request.user} called Expenses API.")
+
+#         return response

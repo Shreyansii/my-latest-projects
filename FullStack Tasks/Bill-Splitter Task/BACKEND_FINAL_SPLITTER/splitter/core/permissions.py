@@ -2,7 +2,7 @@ from rest_framework import permissions
 
 class IsGroupMember(permissions.BasePermission):
     """
-    Custom permission to only allow members of a group to access it.
+    Allow access only if user is a member of the group.
     """
     def has_object_permission(self, request, view, obj):
         if hasattr(obj, 'group'):
@@ -11,28 +11,19 @@ class IsGroupMember(permissions.BasePermission):
             return obj.members.filter(id=request.user.id).exists()
         return False
 
-class IsExpenseParticipant(permissions.BasePermission):
-    """
-    Custom permission for expense-related operations.
-    """
-    def has_object_permission(self, request, view, obj):
-        if hasattr(obj, 'expense'):
-            expense = obj.expense
-        else:
-            expense = obj
-        
-        return (expense.group.members.filter(id=request.user.id).exists() or
-                expense.by_user == request.user)
-
 class IsGroupAdmin(permissions.BasePermission):
     """
-    Custom permission for group admin operations.
+    Allow access only if user is the group admin.
+    
     """
     def has_object_permission(self, request, view, obj):
+        group = None
         if hasattr(obj, 'group'):
             group = obj.group
-        else:
+        elif hasattr(obj, 'members'):
             group = obj
+
+        if group and hasattr(group, 'created_by'):
+            return group.created_by == request.user
         
-        # Check if user is group admin (assuming creator is admin)
-        return group.created_by == request.user
+        return False
