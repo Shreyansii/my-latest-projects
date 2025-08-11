@@ -1,47 +1,147 @@
+from django.db import models
+from django.conf import settings
+from django.core.validators import MinValueValidator, MaxValueValidator
+from decimal import Decimal
+import uuid
+from django.utils import timezone
+
+
+class Expense(models.Model):
+    SPLIT_TYPE_CHOICES = [
+        ('equal', 'Split Equally'),
+        ('unequal', 'Unequal Amounts'),
+        ('percentage', 'By Percentage'),
+        ('shares', 'By Shares'),
+    ]
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
+    group = models.ForeignKey(
+        'groups.Group', on_delete=models.CASCADE, related_name='expenses'
+    )
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='created_expenses'
+    )
+    paid_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='paid_expenses'
+    )
+
+    title = models.CharField(max_length=200, default='No Title')
+    description = models.TextField(blank=True)
+    amount = models.DecimalField(
+        max_digits=12,
+        decimal_places=2,
+        validators=[MinValueValidator(Decimal('0.01'))]
+    )
+
+    split_type = models.CharField(max_length=20, choices=SPLIT_TYPE_CHOICES, default='equal')
+    category = models.ForeignKey('core.Category', on_delete=models.SET_NULL, null=True, blank=True)
+
+    date = models.DateField(default=timezone.now)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-date', '-created_at']
+        indexes = [
+            models.Index(fields=['group', 'is_active']),
+            models.Index(fields=['date']),
+        ]
+
+    def __str__(self):
+        return f"{self.title} - {self.amount}"
+
+
+class ExpenseParticipant(models.Model):
+    expense = models.ForeignKey(
+        Expense, on_delete=models.CASCADE, related_name='participants'
+    )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    amount = models.DecimalField(
+        max_digits=12, decimal_places=2, validators=[MinValueValidator(Decimal('0.00'))]
+    )
+    percentage = models.DecimalField(
+        max_digits=5, decimal_places=2, null=True, blank=True,
+        validators=[MinValueValidator(0), MaxValueValidator(100)]
+    )
+    shares = models.IntegerField(
+        null=True, blank=True, validators=[MinValueValidator(1)]
+    )
+
+    class Meta:
+        unique_together = ['expense', 'user']
+        indexes = [models.Index(fields=['expense', 'user'])]
+
+    def __str__(self):
+        return f"{self.user.get_full_name()} - {self.amount}"
+
+
+
+
+
+
 # from django.db import models
-# from accounts.models import User
-# from groups.models import Group
-# from core.models import Category
+# from django.conf import settings
+# from django.core.validators import MinValueValidator, MaxValueValidator
+# from decimal import Decimal
+# import uuid
+# from django.utils import timezone
 
 # class Expense(models.Model):
-#     group = models.ForeignKey(Group, on_delete=models.CASCADE, related_name='expenses')
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_expenses')  # creator
-#     byUser = models.ForeignKey(User, on_delete=models.CASCADE, related_name='paid_expenses')   # payer
-#     forUser = models.ForeignKey(User, on_delete=models.CASCADE, related_name='target_expenses', null=True, blank=True)
-#     amount = models.DecimalField(max_digits=10, decimal_places=2)
-#     isActive = models.BooleanField(default=True)
-#     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
-#     note = models.CharField(max_length=255, blank=True)
-#     created_at = models.DateTimeField(auto_now_add=True)
-
-#     def __str__(self):
-#         return f"{self.amount} by {self.byUser.username} in {self.group.name}"
-
-#     class Meta:
-#         ordering = ['-created_at']
-
-# class ExpenseHistory(models.Model):
-#     CHANGE_TYPE_CHOICES = [
-#         ('created', 'Created'),
-#         ('updated', 'Updated'),
-#         ('deleted', 'Deleted'),
-#         ('restored', 'Restored'),
+#     SPLIT_TYPE_CHOICES = [
+#         ('equal', 'Split Equally'),
+#         ('unequal', 'Unequal Amounts'),
+#         ('percentage', 'By Percentage'),
+#         ('shares', 'By Shares'),
 #     ]
-
-#     expense = models.ForeignKey(Expense, on_delete=models.CASCADE, related_name='history')
-#     changed_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-#     change_type = models.CharField(max_length=50, choices=CHANGE_TYPE_CHOICES)
-#     old_amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-#     new_amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-#     old_note = models.TextField(blank=True, null=True)
-#     new_note = models.TextField(blank=True, null=True)
-#     old_status = models.CharField(max_length=20, blank=True, null=True)
-#     new_status = models.CharField(max_length=20, blank=True, null=True)
-#     changed_at = models.DateTimeField(auto_now_add=True)
-
-#     def __str__(self):
-#         return f"{self.change_type} on {self.expense} by {self.changed_by}"
-
+    
+#     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+#     group = models.ForeignKey('groups.Group', on_delete=models.CASCADE, related_name='expenses')
+#     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='created_expenses')
+#     paid_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='paid_expenses')
+    
+#     title = models.CharField(max_length=200, default='No Title')
+#     description = models.TextField(blank=True)
+#     amount = models.DecimalField(max_digits=12, decimal_places=2, validators=[MinValueValidator(Decimal('0.01'))])
+    
+#     split_type = models.CharField(max_length=20, choices=SPLIT_TYPE_CHOICES, default='equal')
+#     category = models.ForeignKey('core.Category', on_delete=models.SET_NULL, null=True, blank=True)
+    
+#     date = models.DateField(default=timezone.now)
+#     is_active = models.BooleanField(default=True)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
+    
 #     class Meta:
-#         verbose_name_plural = "Expense histories"
-#         ordering = ['-changed_at']
+#         ordering = ['-date', '-created_at'] #newest date first, then newest created.
+#         indexes = [
+#             models.Index(fields=['group', 'is_active']),
+#             models.Index(fields=['date']),
+#         ]
+    
+#     def __str__(self):
+#         return f"{self.title} - {self.amount}"
+
+# class ExpenseParticipant(models.Model):
+#     expense = models.ForeignKey(Expense, on_delete=models.CASCADE, related_name='participants')
+#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+#     amount = models.DecimalField(max_digits=12, decimal_places=2, validators=[MinValueValidator(Decimal('0.00'))]) 
+#     # how much amount he owes back to the payer
+#     # payer (paid_by) is also in expense participant but his owe amount is zero  
+#     percentage = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True, 
+#                                    validators=[MinValueValidator(0), MaxValueValidator(100)])
+#     shares = models.IntegerField(null=True, blank=True, validators=[MinValueValidator(1)])
+    
+#     class Meta:
+#         unique_together = ['expense', 'user'] #prevents duplicate participant for the same expense.
+#         indexes = [models.Index(fields=['expense', 'user'])]
+    
+#     def __str__(self):
+#         return f"{self.user.get_full_name()} - {self.amount}"
+
+
+
+
+
+

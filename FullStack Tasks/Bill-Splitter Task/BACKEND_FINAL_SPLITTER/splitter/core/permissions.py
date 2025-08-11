@@ -27,3 +27,17 @@ class IsGroupAdmin(permissions.BasePermission):
             return group.created_by == request.user
         
         return False
+    
+
+
+    ###remove laterr
+
+class IsExpenseParticipant(permissions.BasePermission):
+    """
+    Allow access only if the user is a participant in the expense.
+    """
+    def has_object_permission(self, request, view, obj):
+        # Assuming obj is an Expense instance and has a participants relationship
+        if hasattr(obj, 'participants'):
+            return obj.participants.filter(id=request.user.id).exists()
+        return False

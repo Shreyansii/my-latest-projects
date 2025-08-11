@@ -4,6 +4,9 @@ from .models import Group, GroupUser, Invite
 
 User = get_user_model()
 
+#Rule of thumb: Using source= for simple field access, use SerializerMethodField when need conditions, calculations, or complex logic. 
+#SerializerMethodField used in core app's serializer
+
 class GroupUserSerializer(serializers.ModelSerializer):
     user_name = serializers.CharField(source='user.get_full_name', read_only=True)
     user_email = serializers.CharField(source='user.email', read_only=True)
@@ -35,6 +38,7 @@ class GroupCreateSerializer(serializers.ModelSerializer):
         fields = ['name', 'description', 'group_avatar_url', 'currency']
 
 class InviteSerializer(serializers.ModelSerializer):
+    #for listing all invites
     invited_by_name = serializers.CharField(source='invited_by.get_full_name', read_only=True)
     group_name = serializers.CharField(source='group.name', read_only=True)
     
@@ -44,6 +48,8 @@ class InviteSerializer(serializers.ModelSerializer):
         read_only_fields = ('invited_by', 'token', 'created_at')
 
 class InviteCreateSerializer(serializers.ModelSerializer):
+    #for single or multiple invites creation (typically multiple)
+
     emails = serializers.ListField(
         child=serializers.EmailField(),
         write_only=True

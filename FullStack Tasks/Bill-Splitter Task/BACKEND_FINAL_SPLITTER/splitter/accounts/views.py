@@ -51,21 +51,21 @@ class UserViewSet(viewsets.ModelViewSet):
             return ForgotPasswordSerializer
         return UserSerializer
     
-# create-register
+    # create-register
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
-         with transaction.atomic():
-            user = serializer.save()
-            verification_token = get_random_string(32)
-            user.reset_token = verification_token
-            user.reset_token_exp = timezone.now() + timedelta(hours=24)
-            user.save()
-            self.send_verification_email(user, verification_token)
-            return Response({
-                'user': UserSerializer(user).data,
-                'message': 'Account created successfully! Please check your email to verify your account.'
-            }, status=status.HTTP_201_CREATED)
+            with transaction.atomic():
+                user = serializer.save()
+                verification_token = get_random_string(32)
+                user.reset_token = verification_token
+                user.reset_token_exp = timezone.now() + timedelta(hours=24)
+                user.save()
+                self.send_verification_email(user, verification_token)
+                return Response({
+                    'user': UserSerializer(user).data,
+                    'message': 'Account created successfully! Please check your email to verify your account.'
+                }, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def send_verification_email(self, user, token):
@@ -180,6 +180,7 @@ class UserViewSet(viewsets.ModelViewSet):
             return Response({'error': 'Invalid token'}, status=400)
 
     @action(detail=False, methods=['get', 'put', 'patch'])
+    # userprofile
     def me(self, request):
         if request.method == 'GET':
             serializer = UserSerializer(request.user)
@@ -222,7 +223,10 @@ class SettingsViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class = SettingsSerializer
 
+    # UPDATED: Fix swagger/anonymous user error by returning empty queryset if anonymous or swagger_fake_view
     def get_queryset(self):
+        if getattr(self, "swagger_fake_view", False) or self.request.user.is_anonymous:
+            return Settings.objects.none()
         return Settings.objects.filter(user=self.request.user)
 
     @action(detail=False, methods=['post'])

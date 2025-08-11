@@ -1,7 +1,8 @@
-from django.urls import path
-from . import views
 
-app_name = 'expenses'
-urlpatterns = [
-    # URLs will be added here later
-]
+from rest_framework.routers import DefaultRouter
+from .views import ExpenseViewSet
+
+router = DefaultRouter()
+router.register(r'expenses', ExpenseViewSet, basename='expense')
+
+urlpatterns = router.urls

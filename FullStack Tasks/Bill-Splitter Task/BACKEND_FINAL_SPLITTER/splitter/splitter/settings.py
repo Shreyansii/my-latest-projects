@@ -61,6 +61,7 @@ INSTALLED_APPS = [
       'rest_framework_simplejwt',
     'corsheaders',
     'django_filters',
+    'drf_spectacular',
 
     # my local apps
     'accounts',
@@ -74,6 +75,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -82,6 +85,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'core.middleware.ExpenseLoggingMiddleware' revisit after expense app completion (core's)
 ]
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000", 
+    "http://127.0.0.1:3001",
+      "http://127.0.0.1:3002" 
+]
+
 
 # REST Framework configuration
 REST_FRAMEWORK = {
@@ -109,7 +120,9 @@ REST_FRAMEWORK = {
         'anon': '100/day',              # Max 100 requests per day for each anonymous IP/user
         'forgot_password': '5/hour',    # Custom throttle for forgot password endpoint (5 requests per hour)
         'resend_verification': '3/hour' # Custom throttle for resend verification (3 requests per hour)
-    }
+    },
+
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
 
 
 }
@@ -120,7 +133,17 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=200),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
+
+
+    # For HttpOnly cookies
+    'AUTH_COOKIE': 'access_token',
+    'AUTH_COOKIE_SECURE': False,  # True in production
+    'AUTH_COOKIE_HTTP_ONLY': True,
+    'AUTH_COOKIE_SAMESITE': 'Lax',
+    'AUTH_COOKIE_PATH': '/',
 }
+
+
 
 # CORS settings
 # Tells browser “Only allow JavaScript from these websites to access the API.”
