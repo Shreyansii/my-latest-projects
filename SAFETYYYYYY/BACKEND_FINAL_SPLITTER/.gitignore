@@ -1,0 +1,52 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# Environment variables
+.env
+.env.*
+
+# Django static and media
+/staticfiles/
+/media/
+
+# Django migration backups
+*.sqlite3
+db.sqlite3
+
+# System files
+.DS_Store
+Thumbs.db
+
+# VSCode and PyCharm
+.vscode/
+.idea/
+
+# Coverage reports
+htmlcov/
+.coverage
+.tox/
+.nox/
+coverage.xml
+
+# MyPy and Pyright
+.mypy_cache/
+.pyright/
+
+# Pytest
+.pytest_cache/
+
+# Logs
+*.log
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
